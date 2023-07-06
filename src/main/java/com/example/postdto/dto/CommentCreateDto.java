@@ -1,10 +1,10 @@
 package com.example.postdto.dto;
 
-import com.example.postdto.entity.Post;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,8 +16,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CommentCreateDto {
     private Integer id;
+    @NotEmpty(message = "Invalid body : Empty body")
+    @NotNull(message = "Invalid body : Empty body")
     private String body;
+    @Email(message = "Invalid email : Empty email")
     private String email;
+    @NotEmpty(message = "Invalid name : Empty name")
+    @NotNull(message = "Invalid name : Empty name")
     private String name;
-    private int idPost;
+    @NotNull(message = "Invalid name : Empty name")
+    private Integer idPost;
 }

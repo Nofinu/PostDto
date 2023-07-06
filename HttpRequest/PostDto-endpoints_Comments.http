@@ -3,8 +3,8 @@ POST http://localhost:8080/api/v1/comment/add
 Content-Type: application/json
 
 {
-  "body": "body1",
-  "email": "email1",
+  "body": "",
+  "email": "email@email.com",
   "name": "name1",
   "idPost": 1
 }

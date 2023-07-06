@@ -2,11 +2,10 @@ package com.example.postdto.controller;
 
 import com.example.postdto.dto.CommentCreateDto;
 import com.example.postdto.dto.CommentReadDto;
-import com.example.postdto.dto.PostCreateDto;
-import com.example.postdto.dto.PostReadDto;
 import com.example.postdto.exception.EmptyFieldException;
 import com.example.postdto.exception.NotFoundExeption;
 import com.example.postdto.service.CommentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +27,13 @@ public class CommentController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CommentReadDto> create (@RequestBody CommentCreateDto commentCreateDto) throws NotFoundExeption {
+    public ResponseEntity<CommentReadDto> create (@RequestBody  @Valid CommentCreateDto commentCreateDto) throws NotFoundExeption {
         CommentReadDto commentReadDto =  commentService.create(commentCreateDto);
         return new ResponseEntity<CommentReadDto>(commentReadDto, HttpStatus.OK);
     }
 
     @PostMapping("/edit")
-    public ResponseEntity<CommentReadDto> update (@RequestBody CommentCreateDto commentCreateDto) throws NotFoundExeption, EmptyFieldException {
+    public ResponseEntity<CommentReadDto> update (@RequestBody @Valid CommentCreateDto commentCreateDto) throws NotFoundExeption, EmptyFieldException {
         if(commentCreateDto.getId() !=null){
             CommentReadDto commentReadDto =  commentService.create(commentCreateDto);
             return new ResponseEntity<CommentReadDto>(commentReadDto, HttpStatus.OK);
